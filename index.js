@@ -1,4 +1,4 @@
-var service = 'screenshotone'
+var service = 'thum.io'
 
 const fs = require('fs')
 const stream = require('stream')
