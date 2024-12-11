@@ -1,3 +1,5 @@
+var service = 'thum.io'
+
 const fs = require('fs')
 const pipeline = require('stream').pipeline
 const promisify = require('util').promisify
@@ -98,9 +100,17 @@ app.get('/take', async function(req, res) {
     queryString = queryString.join('&')
     if (queryString) queryString = `?${queryString}`
 
-    var url = `https://api.screenshotone.com/take${queryString}`
-    // var url = `https://image.thum.io/get/maxAge/12/width/${object.viewport_width}/${decodeURIComponent(oUrl)}`
-    
+    var url = ''
+
+    switch(service) {
+        case 'screenshotone': 
+            url = `https://api.screenshotone.com/take${queryString}`
+            break
+        default: 
+            url = `https://image.thum.io/get/maxAge/12/width/${object.viewport_width}/${decodeURIComponent(oUrl)}`
+            break
+    }
+
     var response = await fetch(url);
     if (!response.ok) {
         res.send(`Error: ${response.statusText}`)
