@@ -98,8 +98,8 @@ app.get('/take', async function(req, res) {
     queryString = queryString.join('&')
     if (queryString) queryString = `?${queryString}`
 
-    // var url = `https://api.screenshotone.com/take${queryString}`
-    var url = `https://image.thum.io/get/maxAge/12/width/${object.viewport_width}/${decodeURIComponent(oUrl)}`
+    var url = `https://api.screenshotone.com/take${queryString}`
+    // var url = `https://image.thum.io/get/maxAge/12/width/${object.viewport_width}/${decodeURIComponent(oUrl)}`
     
     var response = await fetch(url);
     if (!response.ok) {
