@@ -1,4 +1,4 @@
-const createWriteStream = require('fs').createWriteStream
+const fs = require('fs')
 const pipeline = require('stream').pipeline
 const promisify = require('util').promisify
 const fetch = require('node-fetch')
@@ -113,8 +113,10 @@ app.get('/take', async function(req, res) {
     if (oUrl.includes('.')) oUrl = oUrl.split('.').join('_')
     if (oUrl.includes('/')) oUrl = oUrl.split('/').join('-')
 
+    if (!fs.existsSync(`./files`)) fs.mkdirSync(`./files`)
+
     var format = object.format
-    await streamPipeline(response.body, createWriteStream(`./files/${oUrl}.${format}`));
+    await streamPipeline(response.body, fs.createWriteStream(`./files/${oUrl}.${format}`));
 
     res.sendFile(`${__dirname}/files/${oUrl}.${format}`)
 });
