@@ -89,7 +89,7 @@ app.get('/take', async function(req, res) {
     object.full_page_scroll = object.full_page ? getShotParam(req.query, 'full_page_scroll') : ''
     
     if (object.wait_until.includes(',')) {
-        object.wait_until = object.wait_until.split(',').join('&wait_until=')
+        object.wait_until = object.wait_until.replaceAll(',', '&wait_until=')
     }
 
     parameters.forEach(p => {
