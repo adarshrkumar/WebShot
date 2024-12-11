@@ -1,11 +1,11 @@
 var service = 'thum.io'
 
 const fs = require('fs')
-const pipeline = require('stream').pipeline
-const promisify = require('util').promisify
+const stream = require('stream')
+const util = require('util')
 const fetch = require('node-fetch')
 
-const streamPipeline = promisify(pipeline);
+const streamPipeline = util.promisify(stream.pipeline);
 
 var parameters = [
     'url', 
