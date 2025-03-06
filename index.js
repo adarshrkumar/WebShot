@@ -77,6 +77,8 @@ function getShotParam(query, param) {
 }
 
 app.get('/take', async function(req, res) {
+    service = req.query.service ?? service
+    
     var queryString = []
 
     var object = {}
