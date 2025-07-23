@@ -1,18 +1,23 @@
 {
-  "name": "nodejs",
+  "name": "webshot",
+  "type": "module",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Web screenshot service built with Astro",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "@types/node": "^18.0.6",
-    "express": "^4.19.2",
-    "node-fetch": "^2.7.0"
-  }
+    "@astrojs/vercel": "^8.2.3",
+    "astro": "^5.12.3"
+  },
+  "keywords": [
+    "screenshot",
+    "web",
+    "astro"
+  ],
+  "author": "",
+  "license": "ISC"
 }
