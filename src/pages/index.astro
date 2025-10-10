@@ -8,7 +8,7 @@ import { parameters, defaults } from '../config/screenshot';
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>WebShot - Screenshot Service</title>
+    <title>ImageResize - Image Resizing API</title>
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -50,10 +50,17 @@ import { parameters, defaults } from '../config/screenshot';
             border-left: 4px solid #28a745;
             margin: 1rem 0;
         }
+        .note {
+            background: #fff3cd;
+            padding: 1rem;
+            border-radius: 4px;
+            border-left: 4px solid #ffc107;
+            margin: 1rem 0;
+        }
     </style>
 </head>
 <body>
-    <h1>WebShot - Screenshot Service</h1>
+    <h1>ImageResize - Image Resizing API</h1>
     
     <div class="endpoint">
         <h3>API Endpoint</h3>
@@ -62,7 +69,12 @@ import { parameters, defaults } from '../config/screenshot';
 
     <div class="example">
         <h3>Example Usage</h3>
-        <code>/api/take?url=https://example.com&viewport_width=1920&viewport_height=1080</code>
+        <code>/api/take?url=https://picsum.photos/800/600&width=400&height=300</code>
+    </div>
+
+    <div class="note">
+        <h3>Note</h3>
+        <p>If you only provide <code>width</code>, the height will be calculated automatically to maintain aspect ratio. Same applies if you only provide <code>height</code>.</p>
     </div>
 
     <h2>Available Parameters</h2>
@@ -72,9 +84,14 @@ import { parameters, defaults } from '../config/screenshot';
     <pre><code>{JSON.stringify(defaults, null, 2)}</code></pre>
 
     <h2>How to Use</h2>
-    <p>Make a GET request to <code>/api/take</code> with your desired parameters as query strings. The service will return a screenshot image of the specified URL.</p>
+    <p>Make a GET request to <code>/api/take</code> with your desired parameters as query strings. The service will return a resized image.</p>
     
-    <p>For example, to take a screenshot of Google with custom dimensions:</p>
-    <pre><code>/api/take?url=https://google.com&viewport_width=1366&viewport_height=768&format=png</code></pre>
+    <p>Examples:</p>
+    <ul>
+        <li>Resize to specific dimensions: <code>/api/take?url=https://example.com/image.jpg&width=400&height=300</code></li>
+        <li>Resize width only (maintain aspect ratio): <code>/api/take?url=https://example.com/image.jpg&width=400</code></li>
+        <li>Resize height only (maintain aspect ratio): <code>/api/take?url=https://example.com/image.jpg&height=300</code></li>
+        <li>Convert to PNG: <code>/api/take?url=https://example.com/image.jpg&width=400&format=png</code></li>
+    </ul>
 </body>
 </html>
