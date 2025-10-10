@@ -1,8 +1,8 @@
 {
-  "name": "imageresize",
+  "name": "webshot",
   "type": "module",
   "version": "1.0.0",
-  "description": "Image resizing API service built with Astro and ImageMagick",
+  "description": "Web screenshot service built with Astro",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
@@ -11,15 +11,12 @@
   },
   "dependencies": {
     "@astrojs/vercel": "^8.2.3",
-    "astro": "^5.13.2",
-    "sharp": "^0.33.5"
+    "astro": "^5.13.2"
   },
   "keywords": [
-    "image",
-    "resize",
-    "imagemagick",
-    "astro",
-    "api"
+    "screenshot",
+    "web",
+    "astro"
   ],
   "author": "",
   "license": "ISC"
