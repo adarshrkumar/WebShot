@@ -35,7 +35,11 @@ export const GET: APIRoute = async ({ request }) => {
     });
     
     const queryStringJoined = queryString.join('&');
-    const finalQueryString = queryStringJoined ? `?${queryStringJoined}` : '';
+    let finalQueryString = queryStringJoined ? `?${queryStringJoined}` : '';
+    if (service === 'screenshotone') {
+        finalQueryString += queryStringJoined ? '&' : '?';
+        finalQueryString += 'access_key=' + encodeURIComponent(process.env.SCREENSHOTONE_API_KEY || '');
+    }
 
     let apiUrl = '';
 
