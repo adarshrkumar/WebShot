@@ -1,6 +1,8 @@
 import type { APIRoute } from 'astro';
 import { parameters, defaults } from '../../config/screenshot';
 
+const defaultService = 'thum.io';
+
 function getShotParam(query: URLSearchParams, param: string): string {
     return query.get(param) || defaults[param as keyof typeof defaults]?.toString() || '';
 }
@@ -12,8 +14,7 @@ export const GET: APIRoute = async ({ request }) => {
     console.log('[take] Incoming request:', request.url);
     console.log('[take] Query params:', Object.fromEntries(query.entries()));
 
-    let service = 'thum.io';
-    service = query.get('service') !== service ? (query.get('service') || service) : service;
+    const service = query.get('service') || defaultService;
     console.log('[take] Selected service:', service);
     
     const queryString: string[] = [];
@@ -72,7 +73,12 @@ export const GET: APIRoute = async ({ request }) => {
 
         if (!response.ok) {
             console.error('[take] Screenshot service returned error:', response.status, response.statusText);
-            return new Response(`Error: ${response.statusText}`, { status: response.status });
+            const errorBody = await response.text().catch(() => 'Unable to read error response');
+            const errorMessage = `Screenshot service error (${service}): ${response.status} ${response.statusText}\n` +
+                `URL: ${oUrl}\n` +
+                `Service API: ${apiUrl}\n` +
+                `Response: ${errorBody}`;
+            return new Response(errorMessage, { status: response.status });
         }
 
         // Process filename
@@ -111,7 +117,12 @@ export const GET: APIRoute = async ({ request }) => {
             url: apiUrl,
             service: service
         });
-        return new Response(`Error: ${error instanceof Error ? error.message : 'Unknown error'}`, {
+        const errorMessage = `Failed to take screenshot using ${service}\n` +
+            `Error: ${error instanceof Error ? error.message : 'Unknown error'}\n` +
+            `URL: ${oUrl}\n` +
+            `Service API: ${apiUrl}\n` +
+            `Stack trace: ${error instanceof Error ? error.stack : 'Not available'}`;
+        return new Response(errorMessage, {
             status: 500
         });
     }
