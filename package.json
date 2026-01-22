@@ -10,9 +10,11 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/vercel": "^9.0.0",
-    "@vercel/routing-utils": "^5.2.1",
+    "@astrojs/vercel": "^9.0.4",
     "astro": "^5.15.9"
+  },
+  "overrides": {
+    "path-to-regexp": "6.3.0"
   },
   "keywords": [
     "screenshot",
