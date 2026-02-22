@@ -14,7 +14,8 @@
     "astro": "^5.15.9"
   },
   "overrides": {
-    "path-to-regexp": "6.3.0"
+    "path-to-regexp": "6.3.0",
+    "glob": "^13.0.6"
   },
   "keywords": [
     "screenshot",
