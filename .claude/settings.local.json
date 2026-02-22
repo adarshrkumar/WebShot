@@ -3,7 +3,8 @@
     "allow": [
       "Bash(npm show:*)",
       "Bash(node:*)",
-      "Bash(npm view:*)"
+      "Bash(npm view:*)",
+      "Bash(cd H:/Code/GitHub/WebShot && npm install 2>&1)"
     ]
   }
 }
