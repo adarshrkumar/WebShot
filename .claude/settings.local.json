@@ -4,7 +4,8 @@
       "Bash(npm show:*)",
       "Bash(node:*)",
       "Bash(npm view:*)",
-      "Bash(cd H:/Code/GitHub/WebShot && npm install 2>&1)"
+      "Bash(cd H:/Code/GitHub/WebShot && npm install 2>&1)",
+      "Bash(cd H:/Code/GitHub/WebShot && npm run build 2>&1)"
     ]
   }
 }
